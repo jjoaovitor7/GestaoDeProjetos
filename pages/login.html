@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../public/css/main.css" />
+
+    <title>Cadastro</title>
+  </head>
+
+  <body id="page-login">
+    <header>
+      <div id="header-logo">
+        <img src="../public/assets/logo.png" width="150" height="200" />
+      </div>
+      <h1>Sistema de Gestão de Projetos</h1>
+      <h2>Login</h2>
+    </header>
+
+    <div id="register-profile">
+      <input type="email" id="email" placeholder="E-mail" />
+      <br />
+      <input type="password" id="senha" placeholder="Senha" />
+      <br />
+    </div>
+
+    <p id="loginnotexists">
+      Não tem login? Clique<a href="../index.html"> aqui</a>.
+    </p>
+
+    <div class="container-arrow">
+      <img src="../public/assets/arrow.png" width="100" height="50" />
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-firestore.js"></script>
+    <script src="../public/scripts/login.js"></script>
+  </body>
+</html>

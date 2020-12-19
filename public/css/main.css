@@ -1,0 +1,85 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", "sans-serif";
+}
+
+header #header-logo {
+  display: flex;
+  justify-content: center;
+}
+
+header h1 {
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+  font-size: 25px;
+}
+
+header h2 {
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+  font-size: 20px;
+}
+
+div#register-profile {
+  text-align: center;
+}
+
+div#register-profile input {
+  margin: 5px;
+  width: 250px;
+}
+
+div#register-profile input[type="radio"] {
+  margin: 15px;
+  width: initial;
+}
+
+.typeSpan {
+  font-size: 16px;
+}
+
+.container-arrow {
+  position: absolute;
+  top: 63%;
+  right: 399px;
+  border: 1px solid #000;
+  border-radius: 25px;
+  background-color: #000;
+  cursor: pointer;
+}
+
+#loginexists,
+#loginnotexists {
+  font-size: 11px;
+  text-align: center;
+}
+
+div.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+div.card {
+  margin-left: 25px;
+  margin-top: 25px;
+  width: 18rem;
+}
+
+body#page-login div.container-arrow {
+  top: 380px;
+}
+
+body#page-register {
+  margin: 2vh;
+}
+
+body#page-login {
+  margin: 10vh;
+}
