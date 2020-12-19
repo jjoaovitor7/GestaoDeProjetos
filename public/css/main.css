@@ -83,3 +83,24 @@ body#page-register {
 body#page-login {
   margin: 10vh;
 }
+
+.container-pesquisadores {
+  text-align: center;
+}
+
+.container-pesquisadores button {
+  margin: 15px;
+  background-color: #555555;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.container-pesquisadores button:hover {
+  opacity: 1;
+}

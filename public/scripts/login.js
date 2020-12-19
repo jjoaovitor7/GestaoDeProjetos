@@ -1,5 +1,4 @@
 const config = {
-
 };
 
 const app = firebase.initializeApp(config);
@@ -24,7 +23,7 @@ function login() {
           .doc(data.user.uid)
           .get()
           .then((querySnapshot) => {
-            if (querySnapshot.data().activationStatus == true) {
+            if (querySnapshot.data().activationStatus == false) {
               alert("Login pendente de aprovação do Coordenador");
             } else {
               location.href = "http://127.0.0.1:5500/pages/home.html";
