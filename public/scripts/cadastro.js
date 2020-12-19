@@ -1,10 +1,5 @@
 const config = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: "",
+  
 };
 
 const app = firebase.initializeApp(config);
@@ -14,6 +9,7 @@ function cadastrar() {
   if (
     document.getElementById("email").value == "" ||
     document.getElementById("senha").value == "" ||
+    document.getElementById("senhaConfirm").value == "" ||
     document.getElementById("lattesURL").value == "" ||
     document.querySelector('input[name="type"]:checked').value == null
   ) {

@@ -1,16 +1,11 @@
 const config = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: "",
+
 };
 
 const app = firebase.initializeApp(config);
 const database = firebase.firestore(app);
 
-function cadastrar() {
+function login() {
   if (
     document.getElementById("email").value == "" ||
     document.getElementById("senha").value == ""
@@ -38,11 +33,8 @@ function cadastrar() {
       })
       .catch((error) => {
         console.error(error);
-        if (error.code == "auth/email-already-in-use") {
-          alert("Esse e-mail já está cadastrado no sistema.");
-        }
       });
   }
 }
 
-document.querySelector(".container-arrow").addEventListener("click", cadastrar);
+document.querySelector(".container-arrow").addEventListener("click", login);
