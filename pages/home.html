@@ -42,72 +42,6 @@
     </header>
 
     <div class="container">
-      <div class="card">
-        <div class="card-content">
-          <span class="card-title">Projeto 1</span>
-
-          <p>Descrição do projeto</p>
-        </div>
-        <div class="card-action">
-          <a href="#" class="btn btn-primary">Veja o projeto</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-content">
-          <span class="card-title">Projeto 2</span>
-
-          <p>Descrição do projeto</p>
-        </div>
-        <div class="card-action">
-          <a href="#" class="btn btn-primary">Veja o projeto</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-content">
-          <span class="card-title">Projeto 3</span>
-
-          <p>Descrição do projeto</p>
-        </div>
-        <div class="card-action">
-          <a href="#" class="btn btn-primary">Veja o projeto</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-content">
-          <span class="card-title">Projeto 4</span>
-
-          <p>Descrição do projeto</p>
-        </div>
-        <div class="card-action">
-          <a href="#" class="btn btn-primary">Veja o projeto</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-content">
-          <span class="card-title">Projeto 5</span>
-
-          <p>Descrição do projeto</p>
-        </div>
-        <div class="card-action">
-          <a href="#" class="btn btn-primary">Veja o projeto</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-content">
-          <span class="card-title">Projeto 6</span>
-
-          <p>Descrição do projeto</p>
-        </div>
-        <div class="card-action">
-          <a href="#" class="btn btn-primary">Veja o projeto</a>
-        </div>
-      </div>
-    </div>
 
     <div class="fixed-action-btn">
       <a class="btn-floating btn-large red" style="font-size: 25px"> + </a>
@@ -122,7 +56,7 @@
               align-items: center;
             "
             title="Adicionar projeto"
-            >➕</a
+            href="./adicionar_projeto.html">➕</a
           >
         </li>
 
@@ -145,17 +79,9 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        var elems = document.querySelectorAll(".fixed-action-btn");
-        options = new Object({
-          direction: "left",
-          hoverEnabled: false,
-          toolbarEnabled: false,
-        });
-        var instances = M.FloatingActionButton.init(elems, options);
-        console.log(instances);
-      });
-    </script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-firestore.js"></script>
+    <script src="../public/scripts/home.js"></script>
   </body>
 </html>
