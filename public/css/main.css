@@ -67,6 +67,7 @@ div.container {
 }
 
 div.card {
+  width: 250px;
   margin: 25px;
 }
 
@@ -114,4 +115,9 @@ body#page-login {
 
 #cadastrar-projeto textarea {
   width: 250px;
+}
+
+.card-content p {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

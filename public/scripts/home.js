@@ -5,14 +5,13 @@ const app = firebase.initializeApp(config);
 const database = firebase.firestore(app);
 
 document.addEventListener("DOMContentLoaded", function () {
-  var elems = document.querySelectorAll(".fixed-action-btn");
-  options = new Object({
+  let elems = document.querySelectorAll(".fixed-action-btn");
+  const options = new Object({
     direction: "left",
     hoverEnabled: false,
     toolbarEnabled: false,
   });
-  var instances = M.FloatingActionButton.init(elems, options);
-  console.log(instances);
+  let instances = M.FloatingActionButton.init(elems, options);
 });
 
 let container = document.querySelector(".container");
@@ -39,7 +38,7 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
         cardContent.appendChild(cardTitle);
 
         let descProjeto = document.createElement("p");
-        descProjeto.textContent = "Descrição do projeto";
+        descProjeto.textContent = docSnapshots[i].data().descricao;
         cardContent.appendChild(descProjeto);
 
         let cardAction = document.createElement("div");
