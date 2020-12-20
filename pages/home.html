@@ -5,12 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Bootstrap -->
+    <!-- Materialize -->
+    <!-- Compiled and minified CSS -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-      crossorigin="anonymous"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
 
     <!-- Lato font -->
@@ -27,59 +26,136 @@
     <title>SGP | Home</title>
   </head>
   <body>
+    <header>
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper teal">
+            <a href="#" class="brand-logo" style="margin-left: 10px"
+              >Projetos</a
+            >
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <!-- <li><a href="sass.html">Sass</a></li> -->
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+
     <div class="container">
       <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Projeto 1</h5>
-          <p class="card-text">Descrição do projeto</p>
+        <div class="card-content">
+          <span class="card-title">Projeto 1</span>
+
+          <p>Descrição do projeto</p>
+        </div>
+        <div class="card-action">
           <a href="#" class="btn btn-primary">Veja o projeto</a>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Projeto 2</h5>
-          <p class="card-text">Descrição do projeto</p>
+        <div class="card-content">
+          <span class="card-title">Projeto 2</span>
+
+          <p>Descrição do projeto</p>
+        </div>
+        <div class="card-action">
           <a href="#" class="btn btn-primary">Veja o projeto</a>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Projeto 3</h5>
-          <p class="card-text">Descrição do projeto</p>
+        <div class="card-content">
+          <span class="card-title">Projeto 3</span>
+
+          <p>Descrição do projeto</p>
+        </div>
+        <div class="card-action">
           <a href="#" class="btn btn-primary">Veja o projeto</a>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Projeto 4</h5>
-          <p class="card-text">Descrição do projeto</p>
+        <div class="card-content">
+          <span class="card-title">Projeto 4</span>
+
+          <p>Descrição do projeto</p>
+        </div>
+        <div class="card-action">
           <a href="#" class="btn btn-primary">Veja o projeto</a>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Projeto 5</h5>
-          <p class="card-text">Descrição do projeto</p>
+        <div class="card-content">
+          <span class="card-title">Projeto 5</span>
+
+          <p>Descrição do projeto</p>
+        </div>
+        <div class="card-action">
           <a href="#" class="btn btn-primary">Veja o projeto</a>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Projeto 6</h5>
-          <p class="card-text">Descrição do projeto</p>
+        <div class="card-content">
+          <span class="card-title">Projeto 6</span>
+
+          <p>Descrição do projeto</p>
+        </div>
+        <div class="card-action">
           <a href="#" class="btn btn-primary">Veja o projeto</a>
         </div>
       </div>
     </div>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
-      integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
-      crossorigin="anonymous"
-    ></script>
+
+    <div class="fixed-action-btn">
+      <a class="btn-floating btn-large red" style="font-size: 25px"> + </a>
+      <ul>
+        <li>
+          <a
+            class="btn-floating red"
+            style="
+              font-size: 25px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            "
+            title="Adicionar projeto"
+            >➕</a
+          >
+        </li>
+
+        <li>
+          <a
+            class="btn-floating red"
+            style="
+              font-size: 25px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            "
+            title="Editar projeto"
+            >✏️</a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var elems = document.querySelectorAll(".fixed-action-btn");
+        options = new Object({
+          direction: "left",
+          hoverEnabled: false,
+          toolbarEnabled: false,
+        });
+        var instances = M.FloatingActionButton.init(elems, options);
+        console.log(instances);
+      });
+    </script>
   </body>
 </html>

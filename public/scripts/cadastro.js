@@ -1,5 +1,4 @@
 const config = {
-
 };
 
 const app = firebase.initializeApp(config);
@@ -30,7 +29,7 @@ function cadastrar() {
             email: document.getElementById("email").value,
             url_lattes: document.getElementById("lattesURL").value,
             type: document.querySelector('input[name="type"]:checked').value,
-            activationStatus: false,
+            activationStatus: null,
           });
 
         alert("Usuário cadastrado!");

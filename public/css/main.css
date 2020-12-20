@@ -67,9 +67,7 @@ div.container {
 }
 
 div.card {
-  margin-left: 25px;
-  margin-top: 25px;
-  width: 18rem;
+  margin: 25px;
 }
 
 body#page-login div.container-arrow {
@@ -103,4 +101,17 @@ body#page-login {
 
 .container-pesquisadores button:hover {
   opacity: 1;
+}
+
+#cadastrar-projeto {
+  text-align: center;
+}
+
+#cadastrar-projeto input {
+  width: 250px;
+  margin: 15px 0;
+}
+
+#cadastrar-projeto textarea {
+  width: 250px;
 }

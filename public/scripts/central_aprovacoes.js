@@ -1,5 +1,4 @@
 const config = {
-
 };
 
 const app = firebase.initializeApp(config);
@@ -7,7 +6,7 @@ const database = firebase.firestore(app);
 
 database
   .collection("Usuarios")
-  .where("activationStatus", "==", false)
+  .where("activationStatus", "==", null)
   .get()
   .then(function (querySnapshot) {
     let body = document.querySelector("body");
@@ -21,13 +20,13 @@ database
       buttonAprovar.textContent = "Aprovar";
       buttonAprovar.setAttribute(
         "onClick",
-        `database.collection('Usuarios').doc(\"${docSnapshots[0].id}\").update({"activationStatus": true})`
+        `database.collection('Usuarios').doc(\"${docSnapshots[0].id}\").update({"activationStatus": true}); setTimeout(() => window.location.reload(), 2500);`
       );
       let buttonReprovar = document.createElement("button");
       buttonReprovar.textContent = "Reprovar";
       buttonReprovar.setAttribute(
         "onClick",
-        `database.collection('Usuarios').doc(\"${docSnapshots[0].id}\").update({"activationStatus": false})`
+        `database.collection('Usuarios').doc(\"${docSnapshots[0].id}\").update({"activationStatus": false}); setTimeout(() => window.location.reload(), 2500);`
       );
       div.appendChild(p);
       div.appendChild(buttonAprovar);
