@@ -5,6 +5,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Materialize -->
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
     <!-- Lato font -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -21,7 +28,19 @@
 
   <body>
     <header>
-      <h1>Deletar projeto</h1>
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper teal">
+            <a href="#" class="brand-logo" style="margin-left: 10px"
+              >SGP | Adicionar Projeto</a
+            >
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a href="../home.html">Projetos</a></li>
+              <li><a href="../profile.html">Perfil</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
     </header>
 
     <div id="deletar-projeto">
@@ -32,7 +51,9 @@
       />
 
       <br />
-      <button id="btn-delete">Deletar</button>
+      <button id="btn-delete" class="waves-effect waves-light btn teal">
+        Deletar
+      </button>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>

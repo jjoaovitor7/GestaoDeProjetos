@@ -164,6 +164,22 @@ div.navbar-fixed {
   margin-bottom: 15px;
 }
 
+#nomeProjeto::placeholder {
+  color: #000 !important;
+}
+
+#descProjeto::placeholder {
+  color: #000 !important;
+}
+
+#nomeProjetoEdit::placeholder {
+  color: #000 !important;
+}
+
+#descProjetoEdit::placeholder {
+  color: #000 !important;
+}
+
 @media (max-width: 768px) {
   .container-arrow {
     position: relative;
