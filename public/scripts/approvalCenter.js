@@ -4,6 +4,21 @@ const config = {
 const app = firebase.initializeApp(config);
 const database = firebase.firestore(app);
 
+firebase.auth().onAuthStateChanged((firebaseUser) => {
+  database
+    .collection("Usuarios")
+    .doc(firebaseUser.uid)
+    .get()
+    .then((querySnapshot) => {
+      if (querySnapshot.data().type == "Coordenador") {
+        // pass
+      }
+      else {
+        document.querySelector("body").innerHTML = " ";
+      }
+    });
+});
+
 database
   .collection("Usuarios")
   .where("activationStatus", "==", null)

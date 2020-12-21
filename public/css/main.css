@@ -169,6 +169,11 @@ p.profile-email {
     margin: 15px 100px 0 100px;
   }
 
+  body#page-login div.container-arrow {
+    top: 0%;
+    margin: 15px 50px 0 50px;
+  }
+
   div#container-avatar {
     margin: 50px 260px 0 260px;
   }
