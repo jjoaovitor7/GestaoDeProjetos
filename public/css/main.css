@@ -104,17 +104,28 @@ body#page-login {
   opacity: 1;
 }
 
-#cadastrar-projeto {
+#cadastrar-projeto,
+#editar-projeto,
+#deletar-projeto {
   text-align: center;
 }
 
-#cadastrar-projeto input {
+#cadastrar-projeto input,
+#editar-projeto input,
+#deletar-projeto input {
   width: 250px;
   margin: 15px 0;
 }
 
-#cadastrar-projeto textarea {
+#cadastrar-projeto textarea,
+#editar-projeto textarea {
   width: 250px;
+}
+
+#cadastrar-projeto button,
+#editar-projeto button,
+#deletar-projeto button {
+  margin-top: 15px;
 }
 
 .card-content p {
