@@ -51,7 +51,7 @@ div#register-profile input[type="radio"] {
   right: 399px;
   border: 1px solid #000;
   border-radius: 25px;
-  background-color: #000;
+  background-color: #555555;
   cursor: pointer;
 }
 
@@ -131,4 +131,14 @@ body#page-login {
 .card-content p {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+  .container-arrow {
+    position: relative;
+    top: 88%;
+    right: initial;
+    text-align: center;
+    margin: 15px 100px 0 100px;
+  }
 }
