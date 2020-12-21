@@ -5,6 +5,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Materialize -->
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
     <!-- Lato font -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -16,28 +23,21 @@
     <link rel="stylesheet" href="../public/css/main.css" />
 
     <!-- title -->
-    <title>Deletar Projeto</title>
+    <title>Perfil</title>
   </head>
 
   <body>
-    <header>
-      <h1>Deletar projeto</h1>
-    </header>
-
-    <div id="deletar-projeto">
-      <input
-        type="text"
-        id="nomeProjeto"
-        placeholder="Nome do Projeto (1º Nome)"
-      />
-
-      <br />
-      <button id="btn-delete">Deletar</button>
+    <div id="container-profile">
+      <div id="container-avatar">
+        <p class="profile-avatar"></p>
+      </div>
+      <p class="profile-name"></p>
+      <p class="profile-email"></p>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-firestore.js"></script>
-    <script src="../public/scripts/deletar_projeto.js"></script>
+    <script src="../public/scripts/profile.js"></script>
   </body>
 </html>

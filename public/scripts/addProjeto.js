@@ -4,7 +4,7 @@ const config = {
 const app = firebase.initializeApp(config);
 const database = firebase.firestore(app);
 
-function createProject() {
+function addProject() {
   if (
     document.getElementById("nomeProjeto").value == "" ||
     document.getElementById("descProjeto").value == ""
@@ -25,4 +25,4 @@ function createProject() {
   }
 }
 
-document.getElementById("btn-create").addEventListener("click", createProject);
+document.getElementById("btn-create").addEventListener("click", addProject);

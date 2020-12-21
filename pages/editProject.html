@@ -16,25 +16,48 @@
     <link rel="stylesheet" href="../public/css/main.css" />
 
     <!-- title -->
-    <title>Adicionar Projeto</title>
+    <title>Editar Projeto</title>
   </head>
 
   <body>
     <header>
-      <h1>Adicionar projeto</h1>
+      <h1>Editar projeto</h1>
     </header>
 
-    <div id="cadastrar-projeto">
-      <input type="text" id="nomeProjeto" placeholder="Nome do Projeto" />
+    <div id="editar-projeto">
+      <input
+        type="text"
+        id="nomeProjeto"
+        placeholder="Nome do Projeto (1º Nome)"
+      />
       <br />
-      <textarea id="descProjeto" placeholder="Descrição do Projeto"></textarea>
+
+      <div id="buttons">
+        <button id="btn-nome">Nome</button>
+        <button id="btn-desc">Descrição</button>
+      </div>
+
+      <input
+        hidden
+        type="text"
+        id="nomeProjetoEdit"
+        placeholder="Novo Nome do Projeto"
+      />
+
+      <textarea
+        hidden
+        id="descProjetoEdit"
+        placeholder="Nova Descrição do Projeto"
+        style="margin-top: 15px"
+      ></textarea>
+
       <br />
-      <button id="btn-create">Criar</button>
+      <button id="btn-edit">Editar</button>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-firestore.js"></script>
-    <script src="../public/scripts/adicionar_projeto.js"></script>
+    <script src="../public/scripts/editProject.js"></script>
   </body>
 </html>

@@ -133,6 +133,33 @@ body#page-login {
   text-overflow: ellipsis;
 }
 
+div#container-avatar {
+  margin: 50px 600px 0 600px;
+  height: 160px;
+  border-radius: 100%;
+  background-color: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div#container-avatar p {
+  color: #fff;
+  font-size: 80px;
+}
+
+p.profile-name {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 28px;
+}
+
+p.profile-email {
+  text-align: center;
+  font-size: 20px;
+  font-style: italic;
+}
+
 @media (max-width: 768px) {
   .container-arrow {
     position: relative;
@@ -140,5 +167,9 @@ body#page-login {
     right: initial;
     text-align: center;
     margin: 15px 100px 0 100px;
+  }
+
+  div#container-avatar {
+    margin: 50px 260px 0 260px;
   }
 }
