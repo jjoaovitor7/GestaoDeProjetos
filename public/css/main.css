@@ -160,6 +160,10 @@ p.profile-email {
   font-style: italic;
 }
 
+div.navbar-fixed {
+  margin-bottom: 15px;
+}
+
 @media (max-width: 768px) {
   .container-arrow {
     position: relative;
@@ -176,5 +180,18 @@ p.profile-email {
 
   div#container-avatar {
     margin: 50px 260px 0 260px;
+  }
+
+  .brand-logo {
+    margin-left: 60px !important;
+    width: 500px;
+  }
+
+  body#page-home a.brand-logo {
+    margin-left: 150px !important;
+  }
+
+  body#page-profile a.brand-logo {
+    margin-left: 170px !important;
   }
 }
