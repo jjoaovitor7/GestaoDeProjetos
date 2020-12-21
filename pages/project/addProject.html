@@ -13,31 +13,28 @@
     />
 
     <!-- css -->
-    <link rel="stylesheet" href="../public/css/main.css" />
+    <link rel="stylesheet" href="../../public/css/main.css" />
 
     <!-- title -->
-    <title>Deletar Projeto</title>
+    <title>Adicionar Projeto</title>
   </head>
 
   <body>
     <header>
-      <h1>Deletar projeto</h1>
+      <h1>Adicionar projeto</h1>
     </header>
 
-    <div id="deletar-projeto">
-      <input
-        type="text"
-        id="nomeProjeto"
-        placeholder="Nome do Projeto (1º Nome)"
-      />
-
+    <div id="cadastrar-projeto">
+      <input type="text" id="nomeProjeto" placeholder="Nome do Projeto" />
       <br />
-      <button id="btn-delete">Deletar</button>
+      <textarea id="descProjeto" placeholder="Descrição do Projeto"></textarea>
+      <br />
+      <button id="btn-create">Criar</button>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-firestore.js"></script>
-    <script src="../public/scripts/deleteProject.js"></script>
+    <script src="../public/scripts/addProjeto.js"></script>
   </body>
 </html>
