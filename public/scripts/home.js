@@ -4,19 +4,28 @@ const config = {
 const app = firebase.initializeApp(config);
 const database = firebase.firestore(app);
 
-document.addEventListener("DOMContentLoaded", function () {
-  let elems = document.querySelectorAll(".fixed-action-btn");
-  const options = new Object({
-    direction: "left",
-    hoverEnabled: false,
-    toolbarEnabled: false,
-  });
-  let instances = M.FloatingActionButton.init(elems, options);
-});
-
 let container = document.querySelector(".container");
 
 firebase.auth().onAuthStateChanged((firebaseUser) => {
+  database
+    .collection("Usuarios")
+    .doc(firebaseUser.uid)
+    .get()
+    .then(function (docSnapshot) {
+      if (
+        docSnapshot.data().type == "Coordenador" ||
+        docSnapshot.data().type == "Pesquisador"
+      ) {
+        let elems = document.querySelectorAll(".fixed-action-btn");
+        const options = new Object({
+          direction: "left",
+          hoverEnabled: false,
+          toolbarEnabled: false,
+        });
+        M.FloatingActionButton.init(elems, options);
+      }
+    });
+
   database
     .collection("Usuarios")
     .doc(firebaseUser.uid)
