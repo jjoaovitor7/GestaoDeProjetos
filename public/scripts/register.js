@@ -32,12 +32,15 @@ function cadastrar() {
             activationStatus: null,
           });
 
-        alert("Usuário cadastrado!");
+        M.toast({ html: "Usuário cadastrado!", displayLength: 6000 });
       })
       .catch((error) => {
         console.error(error);
         if (error.code == "auth/email-already-in-use") {
-          alert("Esse e-mail já está cadastrado no sistema.");
+          M.toast({
+            html: "Esse e-mail já está cadastrado no sistema.",
+            displayLength: 6000,
+          });
         }
       });
   }

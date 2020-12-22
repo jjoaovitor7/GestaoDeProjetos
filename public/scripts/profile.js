@@ -1,10 +1,11 @@
-const config = {};
+const config = {
+};
 
 const app = firebase.initializeApp(config);
 const database = firebase.firestore(app);
 
 firebase.auth().onAuthStateChanged((firebaseUser) => {
-  let nome = database
+  database
     .collection("Usuarios")
     .doc(firebaseUser.uid)
     .get()

@@ -32,8 +32,11 @@ div#register-profile {
 }
 
 div#register-profile input {
-  margin: 5px;
   width: 250px;
+}
+
+div#register-profile input::placeholder {
+  color: #000;
 }
 
 div#register-profile input[type="radio"] {
@@ -73,10 +76,6 @@ div.card {
 
 body#page-login div.container-arrow {
   top: 380px;
-}
-
-body#page-register {
-  margin: 2vh;
 }
 
 body#page-login {
@@ -162,22 +161,6 @@ p.profile-email {
 
 div.navbar-fixed {
   margin-bottom: 15px;
-}
-
-#nomeProjeto::placeholder {
-  color: #000 !important;
-}
-
-#descProjeto::placeholder {
-  color: #000 !important;
-}
-
-#nomeProjetoEdit::placeholder {
-  color: #000 !important;
-}
-
-#descProjetoEdit::placeholder {
-  color: #000 !important;
 }
 
 @media (max-width: 768px) {

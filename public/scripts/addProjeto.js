@@ -20,6 +20,15 @@ function addProject() {
         .set({
           nome: document.getElementById("nomeProjeto").value,
           descricao: document.getElementById("descProjeto").value,
+        })
+        .then(() => {
+          M.toast({
+            html: "Projeto cadastrado!",
+            displayLength: 6000,
+          });
+        })
+        .catch((error) => {
+          console.error(error);
         });
     });
   }

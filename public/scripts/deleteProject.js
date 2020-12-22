@@ -11,6 +11,15 @@ document.getElementById("btn-delete").addEventListener("click", function () {
       .doc(firebaseUser.uid)
       .collection("Projetos")
       .doc(document.getElementById("nomeProjeto").value)
-      .delete();
+      .delete()
+      .then(() => {
+        M.toast({
+          html: "Projeto deletado!",
+          displayLength: 6000,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   });
 });

@@ -12,8 +12,7 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
     .then((querySnapshot) => {
       if (querySnapshot.data().type == "Coordenador") {
         // pass
-      }
-      else {
+      } else {
         document.querySelector("body").innerHTML = " ";
       }
     });
