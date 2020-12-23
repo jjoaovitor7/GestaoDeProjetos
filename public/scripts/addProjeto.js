@@ -13,11 +13,10 @@ function addProject() {
   } else {
     firebase.auth().onAuthStateChanged((firebaseUser) => {
       database
-        .collection("Usuarios")
-        .doc(firebaseUser.uid)
         .collection("Projetos")
         .doc(document.getElementById("nomeProjeto").value)
         .set({
+          pesquisador: firebaseUser.email,
           nome: document.getElementById("nomeProjeto").value,
           descricao: document.getElementById("descProjeto").value,
         })

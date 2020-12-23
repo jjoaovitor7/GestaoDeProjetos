@@ -8,6 +8,7 @@ body {
   font-family: "Lato", "sans-serif";
 }
 
+/***** HEADER *****/
 header #header-logo {
   display: flex;
   justify-content: center;
@@ -26,7 +27,9 @@ header h2 {
   margin: 15px;
   font-size: 20px;
 }
+/***** *****/
 
+/***** REGISTER-PROFILE *****/
 div#register-profile {
   text-align: center;
 }
@@ -43,6 +46,7 @@ div#register-profile input[type="radio"] {
   margin: 15px;
   width: initial;
 }
+/***** *****/
 
 .typeSpan {
   font-size: 16px;

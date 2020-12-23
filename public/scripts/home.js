@@ -27,9 +27,8 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
     });
 
   database
-    .collection("Usuarios")
-    .doc(firebaseUser.uid)
     .collection("Projetos")
+    .where("pesquisador", "==", firebaseUser.email)
     .get()
     .then(function (querySnapshot) {
       const docSnapshots = querySnapshot.docs;
@@ -58,17 +57,28 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
         aCardAction = document.createElement("a");
         aCardAction.setAttribute(
           "onClick",
-          `container.style.display = "flex";
-           container.style.flexDirection = "column";
-           container.innerHTML = '<header><h1>' + document.querySelector('.card-title.i${x}').textContent + '</h1></header><br />' + '<p style="text-align: center;">' + document.querySelector('.card-desc.j${y}').textContent + '</p>';
-           container.innerHTML += '<div class="fixed-action-btn"> <a class="btn-floating btn-large teal" style="font-size: 25px"> + </a> <ul><li><a class="btn-floating teal" style="font-size: 25px;display: flex;justify-content: center;align-items: center;" title="Adicionar aluno" href="./project/addAluno.html">➕</a></li></ul></div>'
-           let elems = document.querySelectorAll(".fixed-action-btn");
-           const options = new Object({
-             direction: "left",
-             hoverEnabled: false,
-             toolbarEnabled: false,
-           });
-           M.FloatingActionButton.init(elems, options);
+          `
+            localStorage.clear();
+            localStorage.setItem('projeto', document.querySelector('.card-title.i${x}').textContent);
+            container.style.display = "flex";
+            container.style.flexDirection = "column";
+            container.innerHTML = '<header><h1>' + document.querySelector('.card-title.i${x}').textContent + '</h1></header><br />' + '<p style="text-align: center;">' + document.querySelector('.card-desc.j${y}').textContent + '</p>';
+            container.innerHTML += '<p class="alunos" style="margin-top: 25px;">Alunos:</p>';
+            database.collection("Projetos/${localStorage.getItem(
+              "projeto"
+            )}/Alunos").get().then((querySnapshot) => {
+              for (let i=0; i < querySnapshot.size; i++) {
+                document.querySelector(".alunos").innerHTML += '<br />' + querySnapshot.docs[i].data().nomeAluno
+              }
+            });
+            container.innerHTML += '<div class="fixed-action-btn"> <a class="btn-floating btn-large teal" style="font-size: 25px"> + </a> <ul><li><a class="btn-floating teal" style="font-size: 25px;display: flex;justify-content: center;align-items: center;" title="Adicionar aluno" href="./project/addAluno.html">➕</a></li></ul></div>'
+            let elems = document.querySelectorAll(".fixed-action-btn");
+            const options = new Object({
+              direction: "left",
+              hoverEnabled: false,
+              toolbarEnabled: false,
+            });
+            M.FloatingActionButton.init(elems, options);
            `
         );
         x++;

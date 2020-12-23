@@ -21,8 +21,6 @@ document.getElementById("btn-edit").addEventListener("click", function () {
   ) {
     firebase.auth().onAuthStateChanged((firebaseUser) => {
       database
-        .collection("Usuarios")
-        .doc(firebaseUser.uid)
         .collection("Projetos")
         .doc(document.getElementById("nomeProjeto").value)
         .update({
@@ -51,8 +49,6 @@ document.getElementById("btn-edit").addEventListener("click", function () {
   ) {
     firebase.auth().onAuthStateChanged((firebaseUser) => {
       database
-        .collection("Usuarios")
-        .doc(firebaseUser.uid)
         .collection("Projetos")
         .doc(document.getElementById("nomeProjeto").value)
         .update({
