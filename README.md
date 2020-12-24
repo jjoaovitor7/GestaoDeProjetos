@@ -40,8 +40,7 @@ Funcionalidades:
   // Criar um Banco de Dados Cloud Firestore (no Firebase).
   // Criar um Aplicativo (web) (no Firebase) e ao criar esse aplicativo você terá acesso à:
   // apiKey, authDomain, projectId, storageBucket, messagingSenderId e ao appId.
-  // Substituir os campos nos arquivos .js pelas suas "credenciais".
-  // (apiKey, authDomain, entre outros).
+  // Substituir os campos nos arquivo env.js pelas suas "credenciais". (apiKey, authDomain, entre outros).
 ```
 
 ---
