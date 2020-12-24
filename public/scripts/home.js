@@ -1,5 +1,4 @@
 const config = {
-
 };
 
 const app = firebase.initializeApp(config);
@@ -84,7 +83,10 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
           container.innerHTML +=
             '<div class="fixed-action-btn"> <a class="btn-floating btn-large teal" style="font-size: 25px"> + </a> <ul><li><a class="btn-floating teal" style="font-size: 25px;display: flex;justify-content: center;align-items: center;" title="Adicionar aluno" href="./project/addAluno.html">➕</a></li></ul></div>';
 
-            ${window.localStorage.setItem("projeto", ".card-title.i" + i)};
+            ${window.localStorage.setItem(
+              "projeto",
+              document.querySelector(".card-title.i" + i).textContent
+            )};
 
             ${queryString.append(
               "projeto",
