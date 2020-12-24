@@ -52,13 +52,10 @@ div#register-profile input[type="radio"] {
   font-size: 16px;
 }
 
-.container-arrow {
+body#page-register div.container-arrow {
   position: absolute;
-  top: 63%;
-  right: 399px;
-  border: 1px solid #000;
-  border-radius: 25px;
-  background-color: #555555;
+  top: 75%;
+  right: 610px;
   cursor: pointer;
 }
 
@@ -79,11 +76,10 @@ div.card {
 }
 
 body#page-login div.container-arrow {
-  top: 380px;
-}
-
-body#page-login {
-  margin: 10vh;
+  position: absolute;
+  top: 45%;
+  right: 610px;
+  cursor: pointer;
 }
 
 .container-pesquisadores {
@@ -168,17 +164,18 @@ div.navbar-fixed {
 }
 
 @media (max-width: 768px) {
-  .container-arrow {
+  body#page-register div.container-arrow {
     position: relative;
-    top: 88%;
     right: initial;
     text-align: center;
     margin: 15px 100px 0 100px;
   }
 
   body#page-login div.container-arrow {
-    top: 0%;
-    margin: 15px 50px 0 50px;
+    position: relative;
+    right: initial;
+    text-align: center;
+    margin: 15px 100px 0 100px;
   }
 
   div#container-avatar {
@@ -196,5 +193,13 @@ div.navbar-fixed {
 
   body#page-profile a.brand-logo {
     margin-left: 170px !important;
+  }
+
+  body#page-register a.brand-logo {
+    margin-left: 165px !important;
+  }
+
+  body#page-login a.brand-logo {
+    margin-left: 168px !important;
   }
 }
