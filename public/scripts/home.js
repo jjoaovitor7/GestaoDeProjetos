@@ -75,6 +75,11 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
           container.style.display = "flex";
           container.style.flexDirection = "column";
 
+          window.localStorage.setItem(
+            "projeto",
+            document.querySelector(".card-title.i${i}").textContent
+          );
+
           container.innerHTML =
             "<header><h1>" +
             document.querySelector('.card-title.i${i}').textContent +
@@ -88,11 +93,6 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
 
           container.innerHTML +=
             '<div class="fixed-action-btn"> <a class="btn-floating btn-large teal" style="font-size: 25px"> + </a> <ul><li><a class="btn-floating teal" style="font-size: 25px;display: flex;justify-content: center;align-items: center;" title="Adicionar aluno" href="./project/addAluno.html">➕</a></li></ul></div>';
-
-            ${window.localStorage.setItem(
-              "projeto",
-              document.querySelector(".card-title.i" + i).textContent
-            )};
 
             ${queryString.append(
               "projeto",
