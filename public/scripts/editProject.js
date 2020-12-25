@@ -29,21 +29,34 @@ document.getElementById("btn-edit").addEventListener("click", function () {
       database
         .collection("Projetos")
         .doc(document.getElementById("nomeProjeto").value)
-        .update({
-          nome: auxNome.value,
-        })
-        .then(() => {
-          M.toast({
-            html: "Projeto editado!",
-            displayLength: 6000,
-          });
-        })
-        .catch((error) => {
-          console.error(error);
-          M.toast({
-            html: "Não conseguimos atualizar o projeto =/",
-            displayLength: 6000,
-          });
+        .get()
+        .then((docSnapshot) => {
+          if (docSnapshot.exists) {
+            database
+              .collection("Projetos")
+              .doc(document.getElementById("nomeProjeto").value)
+              .update({
+                nome: auxNome.value,
+              })
+              .then(() => {
+                M.toast({
+                  html: "Projeto editado!",
+                  displayLength: 6000,
+                });
+              })
+              .catch((error) => {
+                console.error(error);
+                M.toast({
+                  html: "Não conseguimos atualizar o projeto =/",
+                  displayLength: 6000,
+                });
+              });
+          } else {
+            M.toast({
+              html: "Projeto não existe!",
+              displayLength: 6000,
+            });
+          }
         });
     });
   }

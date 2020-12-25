@@ -21,19 +21,32 @@ function addProject() {
       database
         .collection("Projetos")
         .doc(document.getElementById("nomeProjeto").value)
-        .set({
-          pesquisador: firebaseUser.email,
-          nome: document.getElementById("nomeProjeto").value,
-          descricao: document.getElementById("descProjeto").value,
-        })
-        .then(() => {
-          M.toast({
-            html: "Projeto cadastrado!",
-            displayLength: 6000,
-          });
-        })
-        .catch((error) => {
-          console.error(error);
+        .get()
+        .then((docSnapshot) => {
+          if (docSnapshot.exists) {
+            M.toast({
+              html: "Já existe um projeto com esse nome!",
+              displayLength: 6000,
+            });
+          } else {
+            database
+              .collection("Projetos")
+              .doc(document.getElementById("nomeProjeto").value)
+              .set({
+                pesquisador: firebaseUser.email,
+                nome: document.getElementById("nomeProjeto").value,
+                descricao: document.getElementById("descProjeto").value,
+              })
+              .then(() => {
+                M.toast({
+                  html: "Projeto cadastrado!",
+                  displayLength: 6000,
+                });
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+          }
         });
     });
   }
