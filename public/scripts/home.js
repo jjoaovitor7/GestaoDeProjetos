@@ -138,10 +138,12 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
           .where("emailAluno", "==", firebaseUser.email)
           .get()
           .then(function (querySnapshot) {
-            const docSnapshots = querySnapshot.docs;
             for (let i = 0; i < querySnapshot.size; i++) {
               database.collection("Usuarios").doc(firebaseUser.uid).collection("Projetos").get().then((querySnapshot) => {
                 
+                if(querySnapshot.docs[i] == undefined) {
+                  return 0;
+                }
                 let card = document.createElement("div");
                 card.classList = "card";
   
