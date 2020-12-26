@@ -26,7 +26,11 @@ database
         docSnapshots[i].data().email
       })`;
       li.setAttribute("id", docSnapshots[i].id);
-      localStorage.setItem("docSnapshot" + i, docSnapshots[i].data().nome);
+      localStorage.setItem("docSnapshotnome" + i, docSnapshots[i].data().nome);
+      localStorage.setItem(
+        "docSnapshotemail" + i,
+        docSnapshots[i].data().email
+      );
       li.classList = `i${i}`;
       li.style.textAlign = "center";
       li.style.marginLeft = "450px";
@@ -40,7 +44,9 @@ database
       container.appendChild(ul);
       a.setAttribute(
         "onClick",
-        `database.collection('Projetos').doc(localStorage.getItem('projeto')).collection("Alunos").doc(document.querySelector('.i${i}').id).set({ nomeAluno: localStorage.getItem('docSnapshot${i}'), status: true })`
+        `database.collection('Projetos').doc(localStorage.getItem('projeto')).collection("Alunos").doc(document.querySelector('.i${i}').id).set({ nomeAluno: localStorage.getItem('docSnapshotnome${i}'), status: true, emailAluno: localStorage.getItem('docSnapshotemail${i}')});
+         database.collection('Usuarios').doc(document.querySelector('.i${i}').id).collection("Projetos").doc(localStorage.getItem('projeto')).set({nome: localStorage.getItem('projeto')});
+        `
       );
     }
   });
