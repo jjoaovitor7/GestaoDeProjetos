@@ -101,7 +101,7 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
             '<p class="alunos" style="margin-top: 25px;">Alunos:</p>';
 
           container.innerHTML +=
-            '<div class="fixed-action-btn"> <a class="btn-floating btn-large teal" style="font-size: 25px"> + </a> <ul><li><a class="btn-floating teal" style="font-size: 25px;display: flex;justify-content: center;align-items: center;" title="Adicionar aluno" href="./project/addAluno.html">➕</a></li></ul></div>';
+            '<div class="fixed-action-btn"> <a class="btn-floating btn-large teal" style="font-size: 25px"> + </a> <ul><li><a class="btn-floating teal" style="font-size: 25px;display: flex;justify-content: center;align-items: center;" title="Adicionar aluno" href="./project/add_aluno.html">➕</a></li></ul></div>';
 
             ${queryString.append(
               "projeto",
