@@ -125,7 +125,7 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
                 .then((querySnapshot) => {
                   for (let i = 0; i < querySnapshot.size; i++) {
                     document.querySelector(".tarefas").innerHTML +=
-                      "<div class='card horizontal' style='margin: 5px 0 15px 0'><div class='card-content'><div class='card-title'><p>" + querySnapshot.docs[i].data().nome + "</p></div><p>" + querySnapshot.docs[i].data().descricao + "</p></div></div>";
+                      "<div class='card horizontal' style='margin: 5px 0 15px 0'><div class='card-content'><div class='card-title'><p style='word-wrap: anywhere;'>" + querySnapshot.docs[i].data().nome + "</p></div><p style='word-wrap: anywhere;'>" + querySnapshot.docs[i].data().descricao + "</p></div></div>";
                   }
                 });
 
