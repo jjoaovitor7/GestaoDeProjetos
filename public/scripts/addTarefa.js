@@ -7,21 +7,27 @@ const config = {
   appId: env.APPID,
 };
 
-const app = firebase.initializeApp(config);
-const database = firebase.firestore(app);
+const database = firebase.firestore(firebase.initializeApp(config));
 
 function addTarefa() {
-  if (
-    document.getElementById("nomeTarefa").value == "" ||
-    document.getElementById("descTarefa").value == ""
-  ) {
-    // pass
-  } else {
+  const nomeTarefa = document.getElementById("nomeTarefa");
+  const descTarefa = document.getElementById("descTarefa");
+
+  // se os campos de nome e/ou descrição forem vazio.
+  if (nomeTarefa.value == "" || descTarefa.value == "") {
+    M.toast({
+      html: "Os campos de nome e/ou descrição não podem ser vazio.",
+      displayLength: 6000,
+    });
+  }
+
+  //se os campos de nome e/ou descrição não forem vazio.
+  else {
     database
       .collection("Tarefas")
       .add({
-        nome: document.getElementById("nomeTarefa").value,
-        descricao: document.getElementById("descTarefa").value,
+        nome: nomeTarefa.value,
+        descricao: descTarefa.value,
         projetoAssociado: localStorage.getItem("projeto"),
       })
       .then(() => {
@@ -31,6 +37,10 @@ function addTarefa() {
         });
       })
       .catch((error) => {
+        M.toast({
+          html: "Erro!",
+          displayLength: 6000,
+        });
         console.error(error);
       });
   }

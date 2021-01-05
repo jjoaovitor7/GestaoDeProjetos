@@ -7,8 +7,7 @@ const config = {
   appId: env.APPID,
 };
 
-const app = firebase.initializeApp(config);
-const database = firebase.firestore(app);
+const database = firebase.firestore(firebase.initializeApp(config));
 
 document.getElementById("btn-delete").addEventListener("click", function () {
   firebase.auth().onAuthStateChanged((firebaseUser) => {

@@ -7,22 +7,29 @@ const config = {
   appId: env.APPID,
 };
 
-const app = firebase.initializeApp(config);
-const database = firebase.firestore(app);
+const database = firebase.firestore(firebase.initializeApp(config));
 
 function addProject() {
-  if (
-    document.getElementById("nomeProjeto").value == "" ||
-    document.getElementById("descProjeto").value == ""
-  ) {
-    // pass
-  } else {
+  const nomeProjeto = document.getElementById("nomeProjeto");
+  const descProjeto = document.getElementById("descProjeto");
+
+  // se os campos de nome e/ou descrição forem vazio.
+  if (nomeProjeto.value == "" || descProjeto.value == "") {
+    M.toast({
+      html: "Os campos de nome e/ou descrição não podem ser vazio.",
+      displayLength: 6000,
+    });
+  }
+
+  //se os campos de nome e/ou descrição não forem vazio.
+  else {
     firebase.auth().onAuthStateChanged((firebaseUser) => {
       database
         .collection("Projetos")
-        .doc(document.getElementById("nomeProjeto").value)
+        .doc(nomeProjeto.value)
         .get()
         .then((docSnapshot) => {
+          // se já existir um projeto
           if (docSnapshot.exists) {
             M.toast({
               html: "Já existe um projeto com esse nome!",
@@ -31,11 +38,11 @@ function addProject() {
           } else {
             database
               .collection("Projetos")
-              .doc(document.getElementById("nomeProjeto").value)
+              .doc(nomeProjeto.value)
               .set({
                 pesquisador: firebaseUser.email,
-                nome: document.getElementById("nomeProjeto").value,
-                descricao: document.getElementById("descProjeto").value,
+                nome: nomeProjeto.value,
+                descricao: descProjeto.value,
               })
               .then(() => {
                 M.toast({
@@ -44,6 +51,10 @@ function addProject() {
                 });
               })
               .catch((error) => {
+                M.toast({
+                  html: "Erro!",
+                  displayLength: 6000,
+                });
                 console.error(error);
               });
           }

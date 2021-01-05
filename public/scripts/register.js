@@ -7,8 +7,7 @@ const config = {
   appId: env.APPID,
 };
 
-const app = firebase.initializeApp(config);
-const database = firebase.firestore(app);
+const database = firebase.firestore(firebase.initializeApp(config));
 
 function cadastrar() {
   if (

@@ -7,24 +7,24 @@ const config = {
   appId: env.APPID,
 };
 
-const app = firebase.initializeApp(config);
-const database = firebase.firestore(app);
+const database = firebase.firestore(firebase.initializeApp(config));
 
-database
-  .collection("Usuarios")
-  .where("type", "==", "Aluno")
-  .where("activationStatus", "==", true)
-  .get()
-  .then(function (querySnapshot) {
-    const docSnapshots = querySnapshot.docs;
+function addAluno() {
+  database
+    .collection("Usuarios")
+    .where("type", "==", "Aluno")
+    .where("activationStatus", "==", true)
+    .get()
+    .then(function (querySnapshot) {
+      const docSnapshots = querySnapshot.docs;
 
-    let container = document.querySelector(".container");
-    let ul = document.createElement("ul");
-    ul.style.marginLeft = "450px";
+      let container = document.querySelector(".container");
+      let ul = document.createElement("ul");
+      ul.style.marginLeft = "450px";
 
-    for (let i = 0; i < querySnapshot.size; i++) {
-      // prettier-ignore
-      ul.innerHTML +=
+      for (let i = 0; i < querySnapshot.size; i++) {
+        // prettier-ignore
+        ul.innerHTML +=
       `
       <li id=${docSnapshots[i].id} class=i${i} style="text-align: center; margin-bottom: 25px;">
       ${docSnapshots[i].data().nome} (${docSnapshots[i].data().email})
@@ -32,10 +32,16 @@ database
       </li>
       `;
 
-      localStorage.setItem("docSnapshotnome" + i, docSnapshots[i].data().nome);
-      // prettier-ignore
-      localStorage.setItem("docSnapshotemail" + i, docSnapshots[i].data().email);
+        localStorage.setItem(
+          "docSnapshotnome" + i,
+          docSnapshots[i].data().nome
+        );
+        // prettier-ignore
+        localStorage.setItem("docSnapshotemail" + i, docSnapshots[i].data().email);
 
-      container.appendChild(ul);
-    }
-  });
+        container.appendChild(ul);
+      }
+    });
+}
+
+addAluno();

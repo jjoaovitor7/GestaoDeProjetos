@@ -7,8 +7,7 @@ const config = {
   appId: env.APPID,
 };
 
-const app = firebase.initializeApp(config);
-const database = firebase.firestore(app);
+const database = firebase.firestore(firebase.initializeApp(config));
 
 firebase.auth().onAuthStateChanged((firebaseUser) => {
   database
@@ -16,10 +15,9 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
     .doc(firebaseUser.uid)
     .get()
     .then((querySnapshot) => {
-      if (querySnapshot.data().type == "Coordenador") {
-        // pass
-      } else {
-        document.querySelector("body").innerHTML = " ";
+      if (!(querySnapshot.data().type == "Coordenador")) {
+        document.querySelector("body").innerHTML =
+          "<p style='margin-left: 5px; margin-top: 5px; font-size: 28px;'>Você não é coordenador.</p>";
       }
     });
 });
