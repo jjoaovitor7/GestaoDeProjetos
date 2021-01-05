@@ -81,52 +81,64 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
 
               function onClickACardAction() {
                 return `
-          container.style.display = "flex";
-          container.style.flexDirection = "column";
+                container.style.display = "flex";
+                container.style.flexDirection = "column";
 
-          window.localStorage.setItem(
-            "projeto",
-            document.querySelector(".card-title.i${i}").textContent
-          );
+                window.localStorage.setItem("projeto", document.querySelector(".card-title.i${i}").textContent);
 
-          container.innerHTML =
-            "<header><h1>" +
-            document.querySelector('.card-title.i${i}').textContent +
-            "</h1></header><br />" +
-            '<p style="text-align: center;">' +
-            document.querySelector('.card-desc.j${i}').textContent +
-            "</p>";
+                container.innerHTML =
+                  "<header><h1>" +
+                  document.querySelector('.card-title.i${i}').textContent +
+                  "</h1></header><br />" +
+                  '<p style="text-align: center;">' +
+                  document.querySelector('.card-desc.j${i}').textContent +
+                  "</p>";
 
-          container.innerHTML +=
-            '<p class="alunos" style="margin-top: 25px;">Alunos:</p>';
+                container.innerHTML +=
+                  '<p class="alunos" style="margin-top: 25px;">Alunos:</p>';
 
-          container.innerHTML +=
-            '<div class="fixed-action-btn"> <a class="btn-floating btn-large teal" style="font-size: 25px"> + </a> <ul><li><a class="btn-floating teal" style="font-size: 25px;display: flex;justify-content: center;align-items: center;" title="Adicionar aluno" href="./project/add_aluno.html">➕</a></li></ul></div>';
+                container.innerHTML +=
+                  '<p class="tarefas" style="margin-top: 25px;">Tarefas:</p>';
 
-            ${queryString.append(
-              "projeto",
-              document.querySelector(".card-title.i" + i).textContent
-            )}
+                container.innerHTML +=
+                  '<div class="fixed-action-btn"> <a class="btn-floating btn-large teal" style="font-size: 25px"> + </a> <ul><li><a class="btn-floating teal" style="font-size: 25px;display: flex;justify-content: center;align-items: center;" title="Adicionar aluno" href="./project/addAluno.html">➕</a></li> <li><a class="btn-floating teal" style="font-size: 25px;display: flex;justify-content: center;align-items: center;" title="Adicionar tarefa" href="./project/addTarefa.html">➕</a></li> </ul></div>';
 
-          database
-          .collection('Projetos/${queryString.get("projeto")}/Alunos')
-          .get()
-          .then((querySnapshot) => {
-            for (let i = 0; i < querySnapshot.size; i++) {
-              document.querySelector(".alunos").innerHTML +=
-                "<br />" + querySnapshot.docs[i].data().nomeAluno;
-            }
-          });
+                ${queryString.append(
+                  "projeto",
+                  document.querySelector(".card-title.i" + i).textContent
+                )}
 
-          let elems = document.querySelectorAll(".fixed-action-btn");
-          const options = new Object({
-            direction: "left",
-            hoverEnabled: false,
-            toolbarEnabled: false,
-          });
+                database
+                .collection('Projetos/${queryString.get("projeto")}/Alunos')
+                .get()
+                .then((querySnapshot) => {
+                  for (let i = 0; i < querySnapshot.size; i++) {
+                    document.querySelector(".alunos").innerHTML +=
+                      "<br />" + querySnapshot.docs[i].data().nomeAluno;
+                  }
+                });
 
-          M.FloatingActionButton.init(elems, options);
-          `;
+                database
+                .collection('Tarefas').where("projetoAssociado", "==", '${queryString.get(
+                  "projeto"
+                )}')
+                .get()
+                .then((querySnapshot) => {
+                  for (let i = 0; i < querySnapshot.size; i++) {
+                    document.querySelector(".tarefas").innerHTML +=
+                      "<br /><br />" + querySnapshot.docs[i].data().nome + "<br />&nbsp;&nbsp;-" + querySnapshot.docs[i].data().descricao;
+                  }
+                });
+
+                let elems = document.querySelectorAll(".fixed-action-btn");
+                const options = new Object({
+                  direction: "left",
+                  hoverEnabled: false,
+                  toolbarEnabled: false,
+                });
+
+                M.FloatingActionButton.init(elems, options);
+                `;
               }
 
               aCardAction.setAttribute("onClick", onClickACardAction());
@@ -139,44 +151,48 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
           .get()
           .then(function (querySnapshot) {
             for (let i = 0; i < querySnapshot.size; i++) {
-              database.collection("Usuarios").doc(firebaseUser.uid).collection("Projetos").get().then((querySnapshot) => {
-                
-                if(querySnapshot.docs[i] == undefined) {
-                  return 0;
-                }
-                let card = document.createElement("div");
-                card.classList = "card";
-  
-                let cardContent = document.createElement("div");
-                cardContent.classList = "card-content";
-  
-                let cardTitle = document.createElement("span");
-                cardTitle.classList = `card-title i${i}`;
-                cardTitle.textContent = querySnapshot.docs[i].data().nome;
-                cardContent.appendChild(cardTitle);
-  
-                // let descProjeto = document.createElement("p");
-                // descProjeto.classList = `card-desc j${i}`;
-                // descProjeto.textContent = docSnapshots[i].data().descricao;
-                // cardContent.appendChild(descProjeto);
-  
-                let cardAction = document.createElement("div");
-                cardAction.classList = "card-action";
-                aCardAction = document.createElement("a");
-  
-                let queryString = new URLSearchParams(window.location.search);
-  
-                aCardAction.classList = "btn btn-primary";
-                aCardAction.textContent = "Veja o projeto";
-                cardAction.appendChild(aCardAction);
-  
-                card.appendChild(cardContent);
-                card.appendChild(cardAction);
-  
-                container.appendChild(card);
-  
-                function onClickACardAction() {
-                  return `
+              database
+                .collection("Usuarios")
+                .doc(firebaseUser.uid)
+                .collection("Projetos")
+                .get()
+                .then((querySnapshot) => {
+                  if (querySnapshot.docs[i] == undefined) {
+                    return 0;
+                  }
+                  let card = document.createElement("div");
+                  card.classList = "card";
+
+                  let cardContent = document.createElement("div");
+                  cardContent.classList = "card-content";
+
+                  let cardTitle = document.createElement("span");
+                  cardTitle.classList = `card-title i${i}`;
+                  cardTitle.textContent = querySnapshot.docs[i].data().nome;
+                  cardContent.appendChild(cardTitle);
+
+                  // let descProjeto = document.createElement("p");
+                  // descProjeto.classList = `card-desc j${i}`;
+                  // descProjeto.textContent = docSnapshots[i].data().descricao;
+                  // cardContent.appendChild(descProjeto);
+
+                  let cardAction = document.createElement("div");
+                  cardAction.classList = "card-action";
+                  aCardAction = document.createElement("a");
+
+                  let queryString = new URLSearchParams(window.location.search);
+
+                  aCardAction.classList = "btn btn-primary";
+                  aCardAction.textContent = "Veja o projeto";
+                  cardAction.appendChild(aCardAction);
+
+                  card.appendChild(cardContent);
+                  card.appendChild(cardAction);
+
+                  container.appendChild(card);
+
+                  function onClickACardAction() {
+                    return `
                   container.style.display = "flex";
                   container.style.flexDirection = "column";
   
@@ -216,11 +232,10 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
                     }
                   });
                   `;
-                }
-  
-                aCardAction.setAttribute("onClick", onClickACardAction());
-              })
-    
+                  }
+
+                  aCardAction.setAttribute("onClick", onClickACardAction());
+                });
             }
           });
       }

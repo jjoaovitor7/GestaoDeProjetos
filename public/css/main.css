@@ -105,25 +105,29 @@ body#page-login div.container-arrow {
 
 #cadastrar-projeto,
 #editar-projeto,
-#deletar-projeto {
+#deletar-projeto,
+#add-tarefa {
   text-align: center;
 }
 
 #cadastrar-projeto input,
 #editar-projeto input,
-#deletar-projeto input {
+#deletar-projeto input,
+#add-tarefa input {
   width: 250px;
   margin: 15px 0;
 }
 
 #cadastrar-projeto textarea,
-#editar-projeto textarea {
+#editar-projeto textarea,
+#add-tarefa textarea {
   width: 250px;
 }
 
 #cadastrar-projeto button,
 #editar-projeto button,
-#deletar-projeto button {
+#deletar-projeto button,
+#add-tarefa button {
   margin-top: 15px;
 }
 
