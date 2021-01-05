@@ -114,7 +114,7 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
                 .then((querySnapshot) => {
                   for (let i = 0; i < querySnapshot.size; i++) {
                     document.querySelector(".alunos").innerHTML +=
-                      "<br />" + querySnapshot.docs[i].data().nomeAluno;
+                      "<br />👤" + querySnapshot.docs[i].data().nomeAluno;
                   }
                 });
 
@@ -126,7 +126,7 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
                 .then((querySnapshot) => {
                   for (let i = 0; i < querySnapshot.size; i++) {
                     document.querySelector(".tarefas").innerHTML +=
-                      "<br /><br />" + querySnapshot.docs[i].data().nome + "<br />&nbsp;&nbsp;-" + querySnapshot.docs[i].data().descricao;
+                      "<div class='card horizontal' style='margin: 5px 0 15px 0'><div class='card-content'><div class='card-title'><p>" + querySnapshot.docs[i].data().nome + "</p></div><p>" + querySnapshot.docs[i].data().descricao + "</p></div></div>";
                   }
                 });
 
