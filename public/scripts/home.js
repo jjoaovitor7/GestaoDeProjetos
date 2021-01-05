@@ -216,6 +216,9 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
   
                   container.innerHTML +=
                     '<p class="alunos" style="margin-top: 25px;">Alunos:</p>';
+
+                  container.innerHTML +=
+                    '<p class="tarefas" style="margin-top: 25px;">Tarefas:</p>';
   
                     ${queryString.append(
                       "projeto",
@@ -228,9 +231,22 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
                   .then((querySnapshot) => {
                     for (let i = 0; i < querySnapshot.size; i++) {
                       document.querySelector(".alunos").innerHTML +=
-                        "<br />" + querySnapshot.docs[i].data().nomeAluno;
+                        "<br />👤" + querySnapshot.docs[i].data().nomeAluno;
                     }
                   });
+
+                  database
+                  .collection('Tarefas').where("projetoAssociado", "==", '${queryString.get(
+                    "projeto"
+                  )}')
+                  .get()
+                  .then((querySnapshot) => {
+                   for (let i = 0; i < querySnapshot.size; i++) {
+                     document.querySelector(".tarefas").innerHTML +=
+                       "<div class='card horizontal' style='margin: 5px 0 15px 0'><div class='card-content'><div class='card-title'><p>" + querySnapshot.docs[i].data().nome + "</p></div><p>" + querySnapshot.docs[i].data().descricao + "</p></div></div>";
+                    }
+                  });
+
                   `;
                   }
 
