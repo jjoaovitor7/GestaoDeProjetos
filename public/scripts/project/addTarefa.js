@@ -28,7 +28,7 @@ function addTarefa() {
       .add({
         nome: nomeTarefa.value,
         descricao: descTarefa.value,
-        projetoAssociado: localStorage.getItem("projeto"),
+        projetoAssociado: window.sessionStorage.getItem("projeto"),
       })
       .then(() => {
         M.toast({

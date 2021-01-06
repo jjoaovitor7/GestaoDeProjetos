@@ -28,16 +28,16 @@ function addAluno() {
       `
       <li id=${docSnapshots[i].id} class=i${i} style="text-align: center; margin-bottom: 25px;">
       ${docSnapshots[i].data().nome} (${docSnapshots[i].data().email})
-      <a style="cursor: pointer;" onclick="database.collection('Projetos').doc('${localStorage.getItem('projeto')}').collection('Alunos').doc(document.querySelector('.i${i}').id).set({ nomeAluno: '${localStorage.getItem(`docSnapshotnome${i}`)}', status: ${true}, emailAluno: '${localStorage.getItem(`docSnapshotemail${i}`)}'}); database.collection('Usuarios').doc(document.querySelector('.i${i}').id).collection('Projetos').doc('${localStorage.getItem('projeto')}').set({nome: '${localStorage.getItem('projeto')}'});">✔️</a>
+      <a style="cursor: pointer;" onclick="database.collection('Projetos').doc('${window.sessionStorage.getItem('projeto')}').update({alunosId: firebase.firestore.FieldValue.arrayUnion(document.querySelector('.i${i}').id), alunosEmail: firebase.firestore.FieldValue.arrayUnion('${window.sessionStorage.getItem(`docSnapshotemail${i}`)}')}); database.collection('Usuarios').doc(document.querySelector('.i${i}').id).collection('Projetos').doc('${window.sessionStorage.getItem('projeto')}').set({nome: '${window.sessionStorage.getItem('projeto')}'});">✔️</a>
       </li>
       `;
 
-        localStorage.setItem(
+        window.sessionStorage.setItem(
           "docSnapshotnome" + i,
           docSnapshots[i].data().nome
         );
         // prettier-ignore
-        localStorage.setItem("docSnapshotemail" + i, docSnapshots[i].data().email);
+        window.sessionStorage.setItem("docSnapshotemail" + i, docSnapshots[i].data().email);
 
         container.appendChild(ul);
       }
