@@ -6,33 +6,29 @@ const config = {
   messagingSenderId: env.MESSAGINGSENDERID,
   appId: env.APPID,
 };
-
 const database = firebase.firestore(firebase.initializeApp(config));
 
-const container = document.querySelector(".container");
-
 firebase.auth().onAuthStateChanged((firebaseUser) => {
-  database
-    .collection("Usuarios")
-    .doc(firebaseUser.uid)
-    .get()
-    .then(function (docSnapshot) {
-      if (
-        docSnapshot.data().type == "Coordenador" ||
-        docSnapshot.data().type == "Pesquisador"
-      ) {
-        let elems = document.querySelectorAll(".fixed-action-btn");
-        const options = new Object({
-          direction: "left",
-          hoverEnabled: false,
-          toolbarEnabled: false,
-        });
-        M.FloatingActionButton.init(elems, options);
-      }
-    });
+  const container = document.querySelector(".container");
+  const userCollection = database.collection("Usuarios");
+  const userDoc = userCollection.doc(firebaseUser.uid);
 
-  database
-    .collection("Usuarios")
+  userDoc.get().then(function (docSnapshot) {
+    if (
+      docSnapshot.data().type == "Coordenador" ||
+      docSnapshot.data().type == "Pesquisador"
+    ) {
+      let elems = document.querySelectorAll(".fixed-action-btn");
+      const options = new Object({
+        direction: "left",
+        hoverEnabled: false,
+        toolbarEnabled: false,
+      });
+      M.FloatingActionButton.init(elems, options);
+    }
+  });
+
+  userCollection
     .where("__name__", "==", firebaseUser.uid)
     .get()
     .then((querySnapshot) => {
@@ -150,9 +146,7 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
             }
           });
       } else {
-        database
-          .collection("Usuarios")
-          .doc(firebaseUser.uid)
+        userDoc
           .collection("Projetos")
           .get()
           .then(function (querySnapshot) {
@@ -160,6 +154,7 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
               if (querySnapshot.docs[i] == undefined) {
                 return 0;
               }
+
               let card = document.createElement("div");
               card.classList = "card";
 
@@ -213,15 +208,15 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
                      // '<p style="text-align: center;">' +
                      // document.querySelector('.card-desc.j${i}').textContent +
                      // "</p>";
-  
+
                     container.innerHTML += '<p class="alunos" style="margin-top: 25px;">Alunos:</p>';
                     container.innerHTML += '<p class="tarefas" style="margin-top: 25px;">Tarefas:</p>';
-  
+
                     ${queryString.append(
                       "projeto",
                       document.querySelector(".card-title.i" + i).textContent
                     )}
-  
+
                     database
                     .collection('Projetos')
                     .doc('${queryString.get("projeto")}')
@@ -242,7 +237,6 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
                         });
                       }
                     });
-    
 
                     database
                     .collection('Tarefas').where("projetoAssociado", "==", '${queryString.get(
@@ -255,10 +249,8 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
                        "<div class='card horizontal' style='margin: 5px 0 15px 0'><div class='card-content'><div class='card-title'><p style='word-wrap: anywhere;'>" + querySnapshot.docs[i].data().nome + "</p></div><p style='word-wrap: anywhere;'>" + querySnapshot.docs[i].data().descricao + "</p></div></div>";
                       }
                     });
-
                     `;
               }
-
               aCardAction.setAttribute("onClick", onClickACardAction());
             }
           });

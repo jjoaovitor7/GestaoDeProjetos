@@ -6,7 +6,6 @@ const config = {
   messagingSenderId: env.MESSAGINGSENDERID,
   appId: env.APPID,
 };
-
 const database = firebase.firestore(firebase.initializeApp(config));
 
 function addProject() {
@@ -24,41 +23,35 @@ function addProject() {
   //se os campos de nome e/ou descrição não forem vazio.
   else {
     firebase.auth().onAuthStateChanged((firebaseUser) => {
-      database
-        .collection("Projetos")
-        .doc(nomeProjeto.value)
-        .get()
-        .then((docSnapshot) => {
-          // se já existir um projeto
-          if (docSnapshot.exists) {
-            M.toast({
-              html: "Já existe um projeto com esse nome!",
-              displayLength: 6000,
-            });
-          } else {
-            database
-              .collection("Projetos")
-              .doc(nomeProjeto.value)
-              .set({
-                pesquisador: firebaseUser.email,
-                nome: nomeProjeto.value,
-                descricao: descProjeto.value,
-              })
-              .then(() => {
-                M.toast({
-                  html: "Projeto cadastrado!",
-                  displayLength: 6000,
-                });
-              })
-              .catch((error) => {
-                M.toast({
-                  html: "Erro!",
-                  displayLength: 6000,
-                });
-                console.error(error);
+      const projectDoc = database.collection("Projetos").doc(nomeProjeto.value);
+
+      projectDoc.get().then((docSnapshot) => {
+        // se já existir um projeto
+        if (docSnapshot.exists) {
+          M.toast({
+            html: "Já existe um projeto com esse nome!",
+            displayLength: 6000,
+          });
+        } else {
+          projectDoc
+            .set({
+              pesquisador: firebaseUser.email, nome: nomeProjeto.value, descricao: descProjeto.value,
+            })
+            .then(() => {
+              M.toast({
+                html: "Projeto cadastrado!",
+                displayLength: 6000,
               });
-          }
-        });
+            })
+            .catch((error) => {
+              M.toast({
+                html: "Erro!",
+                displayLength: 6000,
+              });
+              console.error(error);
+            });
+        }
+      });
     });
   }
 }

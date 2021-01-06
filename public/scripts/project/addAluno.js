@@ -6,12 +6,12 @@ const config = {
   messagingSenderId: env.MESSAGINGSENDERID,
   appId: env.APPID,
 };
-
 const database = firebase.firestore(firebase.initializeApp(config));
 
 function addAluno() {
-  database
-    .collection("Usuarios")
+  const userCollection = database.collection("Usuarios");
+
+  userCollection
     .where("type", "==", "Aluno")
     .where("activationStatus", "==", true)
     .get()
@@ -36,8 +36,10 @@ function addAluno() {
           "docSnapshotnome" + i,
           docSnapshots[i].data().nome
         );
-        // prettier-ignore
-        window.sessionStorage.setItem("docSnapshotemail" + i, docSnapshots[i].data().email);
+        window.sessionStorage.setItem(
+          "docSnapshotemail" + i,
+          docSnapshots[i].data().email
+        );
 
         container.appendChild(ul);
       }

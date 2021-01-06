@@ -6,36 +6,34 @@ const config = {
   messagingSenderId: env.MESSAGINGSENDERID,
   appId: env.APPID,
 };
-
 const database = firebase.firestore(firebase.initializeApp(config));
 
 document.getElementById("btn-delete").addEventListener("click", function () {
-  firebase.auth().onAuthStateChanged((firebaseUser) => {
-    database
-      .collection("Projetos")
-      .doc(document.getElementById("nomeProjeto").value)
-      .get()
-      .then((docSnapshot) => {
-        if (docSnapshot.exists) {
-          database
-            .collection("Projetos")
-            .doc(document.getElementById("nomeProjeto").value)
-            .delete()
-            .then(() => {
-              M.toast({
-                html: "Projeto deletado!",
-                displayLength: 6000,
-              });
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-        } else {
+  const nomeProjeto = document.getElementById("nomeProjeto").value;
+  const projectDoc = database.collection("Projetos").doc(nomeProjeto);
+
+  projectDoc.get().then((docSnapshot) => {
+    if (docSnapshot.exists) {
+      projectDoc
+        .delete()
+        .then(() => {
           M.toast({
-            html: "Projeto não existe!",
+            html: "Projeto deletado!",
             displayLength: 6000,
           });
-        }
+        })
+        .catch((error) => {
+          M.toast({
+            html: "Erro!",
+            displayLength: 6000,
+          });
+          console.error(error);
+        });
+    } else {
+      M.toast({
+        html: "Projeto não existe!",
+        displayLength: 6000,
       });
+    }
   });
 });

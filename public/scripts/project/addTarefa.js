@@ -6,7 +6,6 @@ const config = {
   messagingSenderId: env.MESSAGINGSENDERID,
   appId: env.APPID,
 };
-
 const database = firebase.firestore(firebase.initializeApp(config));
 
 function addTarefa() {
@@ -23,8 +22,9 @@ function addTarefa() {
 
   //se os campos de nome e/ou descrição não forem vazio.
   else {
-    database
-      .collection("Tarefas")
+    const tarefasCollection = database.collection("Tarefas");
+
+    tarefasCollection
       .add({
         nome: nomeTarefa.value,
         descricao: descTarefa.value,

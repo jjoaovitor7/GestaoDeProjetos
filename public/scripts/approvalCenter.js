@@ -6,7 +6,6 @@ const config = {
   messagingSenderId: env.MESSAGINGSENDERID,
   appId: env.APPID,
 };
-
 const database = firebase.firestore(firebase.initializeApp(config));
 
 firebase.auth().onAuthStateChanged((firebaseUser) => {
@@ -22,8 +21,9 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
     });
 });
 
-database
-  .collection("Usuarios")
+const userCollection = database.collection("Usuarios");
+
+userCollection
   .where("activationStatus", "==", null)
   .get()
   .then(function (querySnapshot) {
