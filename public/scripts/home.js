@@ -9,6 +9,10 @@ const config = {
 const database = firebase.firestore(firebase.initializeApp(config));
 
 firebase.auth().onAuthStateChanged((firebaseUser) => {
+  if (firebaseUser == null) {
+    return (location.href = "http://127.0.0.1:5500/");
+  }
+
   const container = document.querySelector(".container");
   const userCollection = database.collection("Usuarios");
   const userDoc = userCollection.doc(firebaseUser.uid);
@@ -76,12 +80,12 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
 
               function onClickACardAction() {
                 return `
-                  container.style.display = "flex";
-                  container.style.flexDirection = "column";
+                  document.querySelector(".container").style.display = "flex";
+                  document.querySelector(".container").style.flexDirection = "column";
 
                   window.sessionStorage.setItem("projeto", document.querySelector(".card-title.i${i}").textContent);
 
-                  container.innerHTML =
+                  document.querySelector(".container").innerHTML =
                     "<header><h1>" +
                     document.querySelector('.card-title.i${i}').textContent +
                     "</h1></header><br />" +
@@ -89,9 +93,9 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
                     document.querySelector('.card-desc.j${i}').textContent +
                     "</p>";
 
-                  container.innerHTML += '<p class="alunos" style="margin-top: 25px;">Alunos:</p>';
-                  container.innerHTML += '<p class="tarefas" style="margin-top: 25px;">Tarefas:</p>';
-                  container.innerHTML += '<div class="fixed-action-btn"> <a class="btn-floating btn-large teal" style="font-size: 25px"> + </a> <ul><li><a class="btn-floating teal" style="font-size: 25px;display: flex;justify-content: center;align-items: center;" title="Adicionar aluno" href="./project/addAluno.html">➕</a></li> <li><a class="btn-floating teal" style="font-size: 25px;display: flex;justify-content: center;align-items: center;" title="Adicionar tarefa" href="./project/addTarefa.html">➕</a></li> </ul></div>';
+                  document.querySelector(".container").innerHTML += '<p class="alunos" style="margin-top: 25px;">Alunos:</p>';
+                  document.querySelector(".container").innerHTML += '<p class="tarefas" style="margin-top: 25px;">Tarefas:</p>';
+                  document.querySelector(".container").innerHTML += '<div class="fixed-action-btn"> <a class="btn-floating btn-large teal" style="font-size: 25px"> + </a> <ul><li><a class="btn-floating teal" style="font-size: 25px;display: flex;justify-content: center;align-items: center;" title="Adicionar aluno" href="./project/addAluno.html">➕</a></li> <li><a class="btn-floating teal" style="font-size: 25px;display: flex;justify-content: center;align-items: center;" title="Adicionar tarefa" href="./project/addTarefa.html">➕</a></li> </ul></div>';
 
                   ${queryString.append(
                     "projeto",
@@ -188,8 +192,8 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
 
               function onClickACardAction() {
                 return `
-                    container.style.display = "flex";
-                    container.style.flexDirection = "column";
+                    document.querySelector(".container").style.display = "flex";
+                    document.querySelector(".container").style.flexDirection = "column";
   
                     window.sessionStorage.setItem(
                       "projeto",
@@ -201,7 +205,7 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
                     //   document.querySelector(".card-desc.j${i}").textContent
                     // );
   
-                    container.innerHTML =
+                    document.querySelector(".container").innerHTML =
                       "<header><h1>" +
                       document.querySelector('.card-title.i${i}').textContent +
                       "</h1></header><br />";
@@ -209,8 +213,8 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
                      // document.querySelector('.card-desc.j${i}').textContent +
                      // "</p>";
 
-                    container.innerHTML += '<p class="alunos" style="margin-top: 25px;">Alunos:</p>';
-                    container.innerHTML += '<p class="tarefas" style="margin-top: 25px;">Tarefas:</p>';
+                    document.querySelector(".container").innerHTML += '<p class="alunos" style="margin-top: 25px;">Alunos:</p>';
+                    document.querySelector(".container").innerHTML += '<p class="tarefas" style="margin-top: 25px;">Tarefas:</p>';
 
                     ${queryString.append(
                       "projeto",

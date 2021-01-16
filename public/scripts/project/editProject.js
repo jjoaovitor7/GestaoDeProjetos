@@ -8,10 +8,15 @@ const config = {
 };
 const database = firebase.firestore(firebase.initializeApp(config));
 
+firebase.auth().onAuthStateChanged((firebaseUser) => {
+  if (firebaseUser == null) {
+    return (location.href = "http://127.0.0.1:5500/");
+  }
+});
+
 const nomeProjeto = document.getElementById("nomeProjeto");
 const nomeProjetoEdit = document.getElementById("nomeProjetoEdit");
 const descProjetoEdit = document.getElementById("descProjetoEdit");
-
 
 document.getElementById("btn-nome").addEventListener("click", function () {
   nomeProjetoEdit.removeAttribute("hidden");

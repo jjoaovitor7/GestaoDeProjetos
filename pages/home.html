@@ -27,6 +27,14 @@
 
     <!-- title -->
     <title>SGP | Home</title>
+
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-firestore.js"></script>
+
+    <script src="../public/scripts/env.js"></script>
+    <script src="../public/scripts/home.js"></script>
   </head>
   <body id="page-home">
     <header>
@@ -38,6 +46,7 @@
             >
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               <li><a href="./profile.html">Perfil</a></li>
+              <li><a onclick="signOut();">Deslogar</a></li>
             </ul>
           </div>
         </nav>
@@ -98,11 +107,6 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-firestore.js"></script>
-
-    <script src="../public/scripts/env.js"></script>
-    <script src="../public/scripts/home.js"></script>
+    <script src="../public/scripts/signOut.js"></script>
   </body>
 </html>

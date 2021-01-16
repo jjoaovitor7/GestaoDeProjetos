@@ -8,6 +8,12 @@ const config = {
 };
 const database = firebase.firestore(firebase.initializeApp(config));
 
+firebase.auth().onAuthStateChanged((firebaseUser) => {
+  if (firebaseUser == null) {
+    return (location.href = "http://127.0.0.1:5500/");
+  }
+});
+
 function addProject() {
   const nomeProjeto = document.getElementById("nomeProjeto");
   const descProjeto = document.getElementById("descProjeto");
