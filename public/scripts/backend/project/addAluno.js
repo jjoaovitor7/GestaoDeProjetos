@@ -6,6 +6,16 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
   }
 });
 
+function updateProjectAndUser(i) {
+  return `"database.collection('Projetos').doc('${window.sessionStorage.getItem(
+    "projeto"
+  )}').update({alunosId: firebase.firestore.FieldValue.arrayUnion(document.querySelector('.i${i}').id), alunosEmail: firebase.firestore.FieldValue.arrayUnion('${window.sessionStorage.getItem(
+    `docSnapshotemail${i}`
+  )}')}); database.collection('Usuarios').doc(document.querySelector('.i${i}').id).collection('Projetos').doc('${window.sessionStorage.getItem(
+    "projeto"
+  )}').set({nome: '${window.sessionStorage.getItem("projeto")}'});"`;
+}
+
 function addAluno() {
   const userCollection = database.collection("Usuarios");
 
@@ -22,13 +32,7 @@ function addAluno() {
 
       for (let i = 0; i < querySnapshot.size; i++) {
         // prettier-ignore
-        ul.innerHTML +=
-      `
-      <li id=${docSnapshots[i].id} class=i${i} style="text-align: center; margin-bottom: 25px;">
-      ${docSnapshots[i].data().nome} (${docSnapshots[i].data().email})
-      <a style="cursor: pointer;" onclick="database.collection('Projetos').doc('${window.sessionStorage.getItem('projeto')}').update({alunosId: firebase.firestore.FieldValue.arrayUnion(document.querySelector('.i${i}').id), alunosEmail: firebase.firestore.FieldValue.arrayUnion('${window.sessionStorage.getItem(`docSnapshotemail${i}`)}')}); database.collection('Usuarios').doc(document.querySelector('.i${i}').id).collection('Projetos').doc('${window.sessionStorage.getItem('projeto')}').set({nome: '${window.sessionStorage.getItem('projeto')}'});">✔️</a>
-      </li>
-      `;
+        ul.innerHTML += showAlunos(docSnapshots, i);
 
         window.sessionStorage.setItem(
           "docSnapshotnome" + i,
