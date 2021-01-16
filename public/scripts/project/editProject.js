@@ -1,12 +1,4 @@
-const config = {
-  apiKey: env.APIKEY,
-  authDomain: env.AUTHDOMAIN,
-  projectId: env.PROJECTID,
-  storageBucket: env.STORAGEBUCKET,
-  messagingSenderId: env.MESSAGINGSENDERID,
-  appId: env.APPID,
-};
-const database = firebase.firestore(firebase.initializeApp(config));
+const database = firebase.firestore(getFirebaseApp());
 
 firebase.auth().onAuthStateChanged((firebaseUser) => {
   if (firebaseUser == null) {
@@ -22,6 +14,7 @@ document.getElementById("btn-nome").addEventListener("click", function () {
   nomeProjetoEdit.removeAttribute("hidden");
   descProjetoEdit.setAttribute("hidden", true);
 });
+
 document.getElementById("btn-desc").addEventListener("click", function () {
   descProjetoEdit.removeAttribute("hidden");
   nomeProjetoEdit.setAttribute("hidden", true);

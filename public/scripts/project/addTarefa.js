@@ -1,12 +1,4 @@
-const config = {
-  apiKey: env.APIKEY,
-  authDomain: env.AUTHDOMAIN,
-  projectId: env.PROJECTID,
-  storageBucket: env.STORAGEBUCKET,
-  messagingSenderId: env.MESSAGINGSENDERID,
-  appId: env.APPID,
-};
-const database = firebase.firestore(firebase.initializeApp(config));
+const database = firebase.firestore(getFirebaseApp());
 
 firebase.auth().onAuthStateChanged((firebaseUser) => {
   if (firebaseUser == null) {
