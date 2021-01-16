@@ -16,6 +16,10 @@ function updateProjectAndUser(i) {
   )}').set({nome: '${window.sessionStorage.getItem("projeto")}'});"`;
 }
 
+function setItemDocSnapshot(i, name, docSnapshot) {
+  window.sessionStorage.setItem(name.concat(i), docSnapshot);
+}
+
 function addAluno() {
   const userCollection = database.collection("Usuarios");
 
@@ -31,17 +35,11 @@ function addAluno() {
       ul.style.marginLeft = "450px";
 
       for (let i = 0; i < querySnapshot.size; i++) {
-        // prettier-ignore
         ul.innerHTML += showAlunos(docSnapshots, i);
 
-        window.sessionStorage.setItem(
-          "docSnapshotnome" + i,
-          docSnapshots[i].data().nome
-        );
-        window.sessionStorage.setItem(
-          "docSnapshotemail" + i,
-          docSnapshots[i].data().email
-        );
+        //prettier-ignore
+        setItemDocSnapshot(i, "docSnapshotnome",  docSnapshots[i].data().nome);
+        setItemDocSnapshot(i, "docSnapshotemail", docSnapshots[i].data().email);
 
         container.appendChild(ul);
       }
