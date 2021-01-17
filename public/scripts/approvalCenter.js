@@ -19,14 +19,22 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
 
 const userCollection = database.collection("Usuarios");
 
+function setFunctionOnClickButtonAprovar(docSnapshots, i) {
+  return `database.collection('Usuarios').doc(\"${docSnapshots[i].id}\").update({"activationStatus": true}); setTimeout(() => window.location.reload(), 2500);`;
+}
+
+function setFunctionOnClickButtonReprovar(docSnapshots, i) {
+  return `database.collection('Usuarios').doc(\"${docSnapshots[i].id}\").update({"activationStatus": false}); setTimeout(() => window.location.reload(), 2500);`;
+}
+
 userCollection
   .where("activationStatus", "==", null)
   .get()
   .then(function (querySnapshot) {
-    let body = document.querySelector("body");
+    const docSnapshots = querySnapshot.docs;
+
     let div = document.createElement("div");
     div.classList = "container-pesquisadores";
-    const docSnapshots = querySnapshot.docs;
 
     for (let i = 0; i < querySnapshot.size; i++) {
       let p = document.createElement("p");
@@ -34,20 +42,22 @@ userCollection
       buttonAprovar.textContent = "Aprovar";
       buttonAprovar.setAttribute(
         "onClick",
-        `database.collection('Usuarios').doc(\"${docSnapshots[0].id}\").update({"activationStatus": true}); setTimeout(() => window.location.reload(), 2500);`
+        setFunctionOnClickButtonAprovar(docSnapshots, i)
       );
+
       let buttonReprovar = document.createElement("button");
       buttonReprovar.textContent = "Reprovar";
       buttonReprovar.setAttribute(
         "onClick",
-        `database.collection('Usuarios').doc(\"${docSnapshots[0].id}\").update({"activationStatus": false}); setTimeout(() => window.location.reload(), 2500);`
+        setFunctionOnClickButtonReprovar(docSnapshots, i)
       );
+
       div.appendChild(p);
       div.appendChild(buttonAprovar);
       div.appendChild(buttonReprovar);
       p.textContent = `Pesquisador: ${docSnapshots[i].data().nome} (${
         docSnapshots[i].data().email
       })`;
-      body.appendChild(div);
+      document.body.appendChild(div);
     }
   });
