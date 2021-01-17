@@ -38,7 +38,7 @@ function addAluno() {
         ul.innerHTML += showAlunos(docSnapshots, i);
 
         //prettier-ignore
-        setItemDocSnapshot(i, "docSnapshotnome",  docSnapshots[i].data().nome);
+        setItemDocSnapshot(i, "docSnapshotnome",  docSnapshots[i].data().nome );
         setItemDocSnapshot(i, "docSnapshotemail", docSnapshots[i].data().email);
 
         container.appendChild(ul);
