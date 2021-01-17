@@ -29,6 +29,6 @@ function createPageContent(querySnapshot, docSnapshots) {
 }
 
 function ifNotCoordenador() {
-  document.querySelector("body").innerHTML =
-    "<p style='margin-left: 5px; margin-top: 5px; font-size: 28px;'>Você não é coordenador.</p>";
+  document.querySelector("body").innerHTML = " ";
+  showToastWithoutPermission();
 }

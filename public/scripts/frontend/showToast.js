@@ -55,6 +55,13 @@ function showToastTooManyRequests() {
   });
 }
 
+function showToastWithoutPermission() {
+  M.toast({
+    html: "Epa, você não tem permissão para acessar essa página.",
+    displayLength: 6000,
+  });
+}
+
 // PROJECT
 function showToastCreatedProject() {
   M.toast({
