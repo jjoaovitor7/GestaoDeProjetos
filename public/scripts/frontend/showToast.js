@@ -26,6 +26,35 @@ function showToastEmailInUse() {
   });
 }
 
+function showToastPendentUser() {
+  M.toast({
+    html: "Login pendente de aprovação do Coordenador",
+    displayLength: 6000,
+  });
+}
+
+function showToastRejectedUser() {
+  M.toast({
+    html: "Login rejeitado pelo Coordenador",
+    displayLength: 6000,
+  });
+}
+
+function showToastWrongPassword() {
+  M.toast({
+    html: "Senha inválida!",
+    displayLength: 6000,
+  });
+}
+
+function showToastTooManyRequests() {
+  M.toast({
+    html:
+      "Um momento amigo, você errou várias vezes a senha.<br />Precisará esperar um pouco.",
+    displayLength: 6000,
+  });
+}
+
 // PROJECT
 function showToastCreatedProject() {
   M.toast({
