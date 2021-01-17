@@ -14,6 +14,13 @@ function showToastLogout() {
   });
 }
 
+function showToastDontInputEmpty() {
+  M.toast({
+    html: "Epa, não pode haver campo(s) vazio(s).",
+    displayLength: 6000,
+  });
+}
+
 // USER
 function showToastCreatedUser() {
   M.toast({ html: "Usuário cadastrado!", displayLength: 6000 });
