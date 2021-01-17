@@ -14,11 +14,17 @@
 Sistema de Gestão de Projetos.
 
 Funcionalidades:
-* Central de Aprovações (Coordenador)
-* Cadastrar/Adicionar Projeto
-* Editar Projeto
-* Deletar Projeto
+* Criar Conta
+* Logar
+* Deslogar
+* Cadastrar/Adicionar Projeto (Coordenador/Pesquisador)
+* Adicionar Aluno em um Projeto (Coordenador/Pesquisador)
+* Adicionar Tarefa em um Projeto (Coordenador/Pesquisador)
+* Editar Projeto (Coordenador/Pesquisador)
+* Deletar Projeto (Coordenador/Pesquisador)
+* Ver Projeto
 * Ver Perfil
+* Central de Aprovações (Coordenador)
 
 ---
 
