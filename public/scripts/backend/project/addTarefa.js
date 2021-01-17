@@ -1,5 +1,12 @@
 const database = firebase.firestore(getFirebaseApp());
 
+function taskFactory(name, desc, project) {
+  return {
+    nome: name.value,
+    descricao: desc.value,
+    projetoAssociado: project,
+  };
+}
 firebase.auth().onAuthStateChanged((firebaseUser) => {
   if (firebaseUser == null) {
     return (location.href = "http://127.0.0.1:5500/");
@@ -21,13 +28,10 @@ function addTarefa() {
   //se os campos de nome e/ou descrição não forem vazio.
   else {
     const tarefasCollection = database.collection("Tarefas");
+    const project = window.sessionStorage.getItem("projeto");
 
     tarefasCollection
-      .add({
-        nome: nomeTarefa.value,
-        descricao: descTarefa.value,
-        projetoAssociado: window.sessionStorage.getItem("projeto"),
-      })
+      .add(taskFactory(nomeTarefa, descTarefa, project))
       .then(() => {
         showToastCreatedTask();
       })
