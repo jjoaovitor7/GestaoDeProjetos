@@ -34,23 +34,14 @@ document.getElementById("btn-edit").addEventListener("click", function () {
             nome: nomeProjetoEdit.value,
           })
           .then(() => {
-            M.toast({
-              html: "Projeto editado!",
-              displayLength: 6000,
-            });
+            showToastEditedProject();
           })
           .catch((error) => {
-            M.toast({
-              html: "Não conseguimos atualizar o projeto =/",
-              displayLength: 6000,
-            });
+            showToastError();
             console.error(error);
           });
       } else {
-        M.toast({
-          html: "Projeto não existe!",
-          displayLength: 6000,
-        });
+        showToastProjectDontExists();
       }
     });
   }

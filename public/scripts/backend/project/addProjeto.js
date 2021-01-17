@@ -12,10 +12,7 @@ function addProject() {
 
   // se os campos de nome e/ou descrição forem vazio.
   if (nomeProjeto.value == "" || descProjeto.value == "") {
-    M.toast({
-      html: "Os campos de nome e/ou descrição não podem ser vazio.",
-      displayLength: 6000,
-    });
+    showToastNameAndDescEmpty();
   }
 
   //se os campos de nome e/ou descrição não forem vazio.
@@ -26,26 +23,19 @@ function addProject() {
       projectDoc.get().then((docSnapshot) => {
         // se já existir um projeto
         if (docSnapshot.exists) {
-          M.toast({
-            html: "Já existe um projeto com esse nome!",
-            displayLength: 6000,
-          });
+          showToastProjectExists();
         } else {
           projectDoc
             .set({
-              pesquisador: firebaseUser.email, nome: nomeProjeto.value, descricao: descProjeto.value,
+              pesquisador: firebaseUser.email,
+              nome: nomeProjeto.value,
+              descricao: descProjeto.value,
             })
             .then(() => {
-              M.toast({
-                html: "Projeto cadastrado!",
-                displayLength: 6000,
-              });
+              showToastCreatedProject();
             })
             .catch((error) => {
-              M.toast({
-                html: "Erro!",
-                displayLength: 6000,
-              });
+              showToastError();
               console.error(error);
             });
         }

@@ -29,16 +29,10 @@ function addTarefa() {
         projetoAssociado: window.sessionStorage.getItem("projeto"),
       })
       .then(() => {
-        M.toast({
-          html: "Tarefa cadastrada!",
-          displayLength: 6000,
-        });
+        showToastCreatedTask();
       })
       .catch((error) => {
-        M.toast({
-          html: "Erro!",
-          displayLength: 6000,
-        });
+        showToastError();
         console.error(error);
       });
   }

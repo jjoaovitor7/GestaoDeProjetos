@@ -15,23 +15,14 @@ document.getElementById("btn-delete").addEventListener("click", function () {
       projectDoc
         .delete()
         .then(() => {
-          M.toast({
-            html: "Projeto deletado!",
-            displayLength: 6000,
-          });
+          showToastDeletedProject();
         })
         .catch((error) => {
-          M.toast({
-            html: "Erro!",
-            displayLength: 6000,
-          });
+          showToastError();
           console.error(error);
         });
     } else {
-      M.toast({
-        html: "Projeto não existe!",
-        displayLength: 6000,
-      });
+      showToastProjectDontExists();
     }
   });
 });

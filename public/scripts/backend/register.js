@@ -27,16 +27,12 @@ function cadastrar() {
             type: document.querySelector('input[name="type"]:checked').value,
             activationStatus: null,
           });
-
-        M.toast({ html: "Usuário cadastrado!", displayLength: 6000 });
+        showToastCreatedUser();
       })
       .catch((error) => {
         console.error(error);
         if (error.code == "auth/email-already-in-use") {
-          M.toast({
-            html: "Esse e-mail já está cadastrado no sistema.",
-            displayLength: 6000,
-          });
+          showToastEmailInUse();
         }
       });
   }
