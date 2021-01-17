@@ -1,31 +1,27 @@
 function createPageContent(docSnapshots, i, isAluno) {
+  function createElementWithClassList(element, classList) {
+    const _element = document.createElement(element);
+    _element.classList = classList;
+    return _element;
+  }
+
   const container = document.querySelector(".container");
 
-  let card = document.createElement("div");
-  card.classList = "card";
-
-  let cardContent = document.createElement("div");
-  cardContent.classList = "card-content";
-
-  let cardTitle = document.createElement("span");
-  cardTitle.classList = `card-title i${i}`;
+  const card = createElementWithClassList("div", "card");
+  const cardContent = createElementWithClassList("div", "card-content");
+  const cardTitle = createElementWithClassList("span", `card-title i${i}`);
   cardTitle.textContent = docSnapshots[i].data().nome;
   cardContent.appendChild(cardTitle);
 
   if (!isAluno) {
-    let descProjeto = document.createElement("p");
-    descProjeto.classList = `card-desc j${i}`;
+    const descProjeto = createElementWithClassList("p", `card-desc j${i}`);
     descProjeto.textContent = docSnapshots[i].data().descricao;
     cardContent.appendChild(descProjeto);
   }
 
-  let cardAction = document.createElement("div");
-  cardAction.classList = "card-action";
-  aCardAction = document.createElement("a");
+  const cardAction = createElementWithClassList("div", "card-action");
+  aCardAction = createElementWithClassList("a", "btn btn-primary");
 
-  let queryString = new URLSearchParams(window.location.search);
-
-  aCardAction.classList = "btn btn-primary";
   aCardAction.textContent = "Veja o projeto";
   cardAction.appendChild(aCardAction);
 
@@ -34,7 +30,9 @@ function createPageContent(docSnapshots, i, isAluno) {
 
   container.appendChild(card);
 
-  function setItemSessionStorage(i, isAluno) {
+  let queryString = new URLSearchParams(window.location.search);
+
+  function setItemSessionStorage(i) {
     return `
         window.sessionStorage.setItem(
           "projeto",
