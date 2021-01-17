@@ -1,5 +1,13 @@
 const database = firebase.firestore(getFirebaseApp());
 
+function projectFactory(firebaseUser, nomeProjeto, descProjeto) {
+  return {
+    pesquisador: firebaseUser.email,
+    nome: nomeProjeto.value,
+    descricao: descProjeto.value,
+  };
+}
+
 firebase.auth().onAuthStateChanged((firebaseUser) => {
   if (firebaseUser == null) {
     return (location.href = "http://127.0.0.1:5500/");
@@ -26,11 +34,7 @@ function addProject() {
           showToastProjectExists();
         } else {
           projectDoc
-            .set({
-              pesquisador: firebaseUser.email,
-              nome: nomeProjeto.value,
-              descricao: descProjeto.value,
-            })
+            .set(projectFactory(firebaseUser, nomeProjeto, descProjeto))
             .then(() => {
               showToastCreatedProject();
             })
