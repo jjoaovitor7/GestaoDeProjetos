@@ -10,7 +10,28 @@ function userFactory() {
   };
 }
 
-function cadastrar() {
+function createUser(email, password) {
+  firebase
+    .auth()
+    .createUserWithEmailAndPassword(email.value, password.value)
+    .then((data) => {
+      const docUser = database.collection("Usuarios").doc(data.user.uid);
+      docUser.set(userFactory());
+      showToastCreatedUser();
+    })
+    .catch((error) => {
+      console.error(error);
+      if (error.code == "auth/email-already-in-use") {
+        showToastEmailInUse();
+      }
+
+      if (error.code == "auth/invalid-email") {
+        showToastInvalidEmail();
+      }
+    });
+}
+
+function register() {
   const email = document.getElementById("email");
   const password = document.getElementById("senha");
   const passwordConfirm = document.getElementById("senhaConfirm");
@@ -18,28 +39,16 @@ function cadastrar() {
   const checkbox = document.querySelector('input[name="type"]:checked');
 
   if (
-    email.value == "" || password.value == "" ||
+    email.value == "" ||
+    password.value == "" ||
     passwordConfirm.value == "" ||
     lattesURL.value == "" ||
     checkbox.value == null
   ) {
     showToastDontInputEmpty();
   } else {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email.value, password.value)
-      .then((data) => {
-        const docUser = database.collection("Usuarios").doc(data.user.uid);
-        docUser.set(userFactory());
-        showToastCreatedUser();
-      })
-      .catch((error) => {
-        console.error(error);
-        if (error.code == "auth/email-already-in-use") {
-          showToastEmailInUse();
-        }
-      });
+    createUser(email, password);
   }
 }
 
-document.querySelector(".container-arrow").addEventListener("click", cadastrar);
+document.querySelector(".container-arrow").addEventListener("click", register);

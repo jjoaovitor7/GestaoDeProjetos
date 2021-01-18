@@ -62,6 +62,13 @@ function showToastTooManyRequests() {
   });
 }
 
+function showToastInvalidEmail() {
+  M.toast({
+    html: "E-mail inválido!",
+    displayLength: 6000,
+  });
+}
+
 function showToastWithoutPermission() {
   M.toast({
     html: "Epa, você não tem permissão para acessar essa página.",
