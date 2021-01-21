@@ -31,29 +31,9 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
         querySnapshot.docs[0].data().type == "Coordenador" ||
         querySnapshot.docs[0].data().type == "Pesquisador"
       ) {
-        database
-          .collection("Projetos")
-          .where("pesquisador", "==", firebaseUser.email)
-          .get()
-          .then(function (querySnapshot) {
-            const docSnapshots = querySnapshot.docs;
-            for (let i = 0; i < querySnapshot.size; i++) {
-              createPageContent(docSnapshots, i, false);
-            }
-          });
+        context(CoordenadorAndPesquisadorStrategy(firebaseUser));
       } else {
-        userDoc
-          .collection("Projetos")
-          .get()
-          .then(function (querySnapshot) {
-            const docSnapshots = querySnapshot.docs;
-            for (let i = 0; i < querySnapshot.size; i++) {
-              if (querySnapshot.docs[i] == undefined) {
-                return 0;
-              }
-              createPageContent(docSnapshots, i, true);
-            }
-          });
+        context(AlunoStrategy(userDoc));
       }
     });
 });
