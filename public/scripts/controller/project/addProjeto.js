@@ -1,12 +1,6 @@
 const database = firebase.firestore(getFirebaseApp());
 
-function projectFactory(firebaseUser, nomeProjeto, descProjeto) {
-  return {
-    pesquisador: firebaseUser.email,
-    nome: nomeProjeto.value,
-    descricao: descProjeto.value,
-  };
-}
+
 
 firebase.auth().onAuthStateChanged((firebaseUser) => {
   if (firebaseUser == null) {

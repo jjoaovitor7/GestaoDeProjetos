@@ -1,12 +1,6 @@
 const database = firebase.firestore(getFirebaseApp());
 
-function taskFactory(name, desc, project) {
-  return {
-    nome: name.value,
-    descricao: desc.value,
-    projetoAssociado: project,
-  };
-}
+
 firebase.auth().onAuthStateChanged((firebaseUser) => {
   if (firebaseUser == null) {
     return (location.href = "http://127.0.0.1:5500/");
